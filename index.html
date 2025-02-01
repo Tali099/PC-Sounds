@@ -190,21 +190,16 @@
   <!-- Reservation Form -->
   <div class="reservation-form" id="reservationForm">
     <h2>Reserve Your Slot</h2>
-    <form action="#" method="post">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-      </div>
-      <button type="submit">Submit</button>
+    <form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLScMyElv4Ma5F4AVCBN5Gv9i8vnKwdtT7npENQJNzCVYymbQcg/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+      Name:<br>
+      <input type="text" name="entry.581387995" id="entry.581387995"><br>
+      Email:<br>
+      <input type="text" name="entry.1385020652" id="entry.1385020652">
+      Phone:<br>
+      <input type="text" name="entry.1863188227" id="entry.1863188227">
+      <input type="submit" value="Submit">
     </form>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
   </div>
 
   <!-- JavaScript to Show/Hide Form -->
