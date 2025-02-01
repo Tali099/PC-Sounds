@@ -3,54 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJ Night Event - Reserve Your Slot!</title>
+  <title>DJ Night Event - Music Festival</title>
   <style>
+    /* General Styles */
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #1a1a1a, #333);
+      background: #000;
       color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Splash Screen */
+    .splash-screen {
+      background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .container {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
       text-align: center;
-      max-width: 500px;
+      position: relative;
+    }
+
+    .splash-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      animation: fadeIn 1.5s ease-in-out;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
     }
-    h1 {
-      font-size: 2.5rem;
+
+    .splash-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .splash-content h1 {
+      font-size: 4rem;
       margin-bottom: 1rem;
-      color: #ff4081;
       text-transform: uppercase;
+      color: #ff4081;
     }
-    p {
-      font-size: 1.1rem;
+
+    .splash-content p {
+      font-size: 1.5rem;
       margin-bottom: 2rem;
       color: #ddd;
     }
+
+    .btn-reserve {
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-reserve:hover {
+      background: #e91e63;
+    }
+
+    /* Reservation Form */
+    .reservation-form {
+      display: none;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    .reservation-form h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ff4081;
+    }
+
     .form-group {
       margin-bottom: 1.5rem;
       text-align: left;
     }
-    label {
+
+    .form-group label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: bold;
       color: #ff4081;
     }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"] {
+
+    .form-group input {
       width: 100%;
       padding: 0.75rem;
       border: 2px solid #ff4081;
@@ -60,13 +109,13 @@
       font-size: 1rem;
       transition: border-color 0.3s ease;
     }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus {
+
+    .form-group input:focus {
       border-color: #e91e63;
       outline: none;
     }
-    input[type="submit"] {
+
+    .form-group button {
       background: #ff4081;
       color: #fff;
       border: none;
@@ -76,31 +125,44 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    input[type="submit"]:hover {
+
+    .form-group button:hover {
       background: #e91e63;
     }
+
+    /* Social Media Icons */
     .social-icons {
-      margin-top: 2rem;
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
+
     .social-icons a {
       color: #fff;
       font-size: 1.5rem;
       transition: color 0.3s ease;
     }
+
     .social-icons a:hover {
       color: #ff4081;
     }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .splash-content h1 {
+        font-size: 2.5rem;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .splash-content p {
+        font-size: 1.2rem;
+      }
+
+      .btn-reserve {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
       }
     }
   </style>
@@ -108,9 +170,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <h1>DJ Night Event</h1>
-    <p>Get ready for an electrifying night of music, lights, and dance! Reserve your slot now and join the party.</p>
+  <!-- Splash Screen -->
+  <div class="splash-screen">
+    <div class="splash-content">
+      <h1>DJ Night Event</h1>
+      <p>Join the ultimate music festival experience!</p>
+      <button class="btn-reserve" onclick="showForm()">Reserve Your Slot</button>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+
+  <!-- Reservation Form -->
+  <div class="reservation-form" id="reservationForm">
+    <h2>Reserve Your Slot</h2>
     <form action="#" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
@@ -124,14 +203,15 @@
         <label for="phone">Phone Number:</label>
         <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
       </div>
-      <input type="submit" value="Reserve Your Slot">
+      <button type="submit">Submit</button>
     </form>
-    <div class="social-icons">
-      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-    </div>
   </div>
+
+  <!-- JavaScript to Show/Hide Form -->
+  <script>
+    function showForm() {
+      document.getElementById('reservationForm').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
